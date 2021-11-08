@@ -1,0 +1,6 @@
+#ifndef CIBLE_H_INCLUDED
+#define CIBLE_H_INCLUDED
+
+
+
+#endif // CIBLE_H_INCLUDED
