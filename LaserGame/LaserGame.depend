@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1636577967 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\case.cpp
+	"Case.h"
+
+1636578052 c:\users\lucbu\documents\c++\jeux-laser\lasergame\case.h
+
+1636494612 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\joueur.cpp
+
+1636494612 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\mur.cpp
+
+1636578800 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\cible.cpp
+	"Cible.h"
+
+1636578010 c:\users\lucbu\documents\c++\jeux-laser\lasergame\cible.h
+	"Case.h"
+
+1636578905 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\laser.cpp
+	"Laser.h"
+
+1636578634 c:\users\lucbu\documents\c++\jeux-laser\lasergame\laser.h
+	"Case.h"
+

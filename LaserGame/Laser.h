@@ -1,14 +1,10 @@
 #ifndef LASER_H_INCLUDED
 #define LASER_H_INCLUDED
+#include "Case.h"
 
-class Laser
-{
+class Laser : public Case{
 public:
-    void getX() const;
-    void getY() const;
-
-private:
-    int d_x, d_y;
-}
+    Laser(int x,int y);
+};
 
 #endif // LASER_H_INCLUDED

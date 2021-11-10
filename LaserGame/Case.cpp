@@ -1,11 +1,16 @@
-#include 'Case.h'
+#include "Case.h"
 
-void Case::getX() const
+int Case::getX() const
 {
     return d_x;
 }
 
-void Case::getY() const
+int Case::getY() const
 {
     return d_y;
+}
+
+char Case::getChar() const
+{
+    return d_c;
 }
