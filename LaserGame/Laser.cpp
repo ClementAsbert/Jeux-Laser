@@ -1,11 +1,4 @@
-#include 'Laser.h'
+#include "Laser.h"
 
-void Laser::getX() const
-{
-    return d_x;
-}
-
-void Laser::getY() const
-{
-    return d_y;
-}
+Laser::Laser(int x,int y)
+{}

@@ -1,14 +1,10 @@
 #ifndef MIRROIR_H_INCLUDED
 #define MIRROIR_H_INCLUDED
+#include "Case.h"
 
-class Miroir
-{
+class Mirroir : public Case{
 public:
-    void getX() const;
-    void getY() const;
-
-private:
-    int d_x, d_y;
-}
+    Mirroir(int x,int y);
+};
 
 #endif // MIRROIR_H_INCLUDED
