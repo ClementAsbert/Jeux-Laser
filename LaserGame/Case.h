@@ -4,12 +4,10 @@
 class Case{
 public:
     virtual ~Case();
-    virtual int getX() const;
-    virtual int getY() const;
-    virtual char getChar() const;
-private:
-    int d_x, d_y;
-    char d_c;
+    virtual int getX() const =0;
+    virtual int getY() const =0;
+    virtual char getChar() const =0;
+    virtual char setChar() const =0;
 };
 
 #endif // CASE_H_INCLUDED

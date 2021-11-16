@@ -1,6 +1,8 @@
 #ifndef TERRAIN_H_INCLUDED
 #define TERRAIN_H_INCLUDED
 #include "Case.h"
+#include <memory>
+#include <vector>
 
 class Terrain {
 public :
@@ -8,13 +10,13 @@ public :
     Terrain();
     int getRows() const;
     int getColumn() const;
-    void affiche() const;
     Case getCase(int row,int column) const;
+    Case setCase() const;
     //save()
     //
 private:
     int d_rows, d_columns;
-    //std::unique_ptr<Case> d_cases[][];
+    std::vector<Laser> d_laser;
 };
 
 

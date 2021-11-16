@@ -32,6 +32,20 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Case.cpp" />
+		<Unit filename="Case.h" />
+		<Unit filename="Cible.cpp" />
+		<Unit filename="Cible.h" />
+		<Unit filename="Joueur.cpp" />
+		<Unit filename="Joueur.h" />
+		<Unit filename="Laser.cpp" />
+		<Unit filename="Laser.h" />
+		<Unit filename="Mirroir.cpp" />
+		<Unit filename="Mirroir.h" />
+		<Unit filename="Mur.cpp" />
+		<Unit filename="Mur.h" />
+		<Unit filename="Terrain.cpp" />
+		<Unit filename="Terrain.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
