@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Canon.cpp" />
+		<Unit filename="Canon.h" />
 		<Unit filename="Case.cpp" />
 		<Unit filename="Case.h" />
 		<Unit filename="Cible.cpp" />
