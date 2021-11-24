@@ -10,13 +10,14 @@ public :
     Terrain();
     int getRows() const;
     int getColumn() const;
+    int setRows(int rows) ;
+    int setColumn(int columns) ;
     Case getCase(int row,int column) const;
-    Case setCase() const;
+    //Case setCase() const;
     //save()
     //
 private:
     int d_rows, d_columns;
-    std::vector<Laser> d_laser;
 };
 
 

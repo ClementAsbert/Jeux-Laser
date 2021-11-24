@@ -12,6 +12,17 @@ int Canon::getY() const
     return d_y;
 }
 
+
+void Canon::setX(int x)
+{
+    d_x = x;
+}
+
+void Canon::setY(int y)
+{
+    d_y=y;
+}
+
 char Canon::getChar() const
 {
     return d_c;
