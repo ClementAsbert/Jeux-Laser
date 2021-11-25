@@ -10,7 +10,7 @@ public:
     virtual void setX(int x)  override;
     virtual void setY(int y)  override;
     virtual char getChar() const override;
-    virtual void setChar(char c) const override;
+    virtual void setChar(char c) override;
 private:
     int d_x, d_y;
     char d_c;

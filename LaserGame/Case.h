@@ -9,7 +9,7 @@ public:
     virtual void setX(int x)  =0;
     virtual void setY(int y)  =0;
     virtual char getChar() const =0;
-    virtual char setChar() const =0;
+    virtual void setChar(char c) =0;
 };
 
 #endif // CASE_H_INCLUDED

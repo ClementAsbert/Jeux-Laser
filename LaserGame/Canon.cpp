@@ -28,7 +28,7 @@ char Canon::getChar() const
     return d_c;
 }
 
-char Canon::setChar(char c) const
+void Canon::setChar(char c)
 {
     d_c = c;
 }

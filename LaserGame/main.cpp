@@ -1,9 +1,14 @@
 #include <iostream>
-
+#include <string>
 using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
-    return 0;
+    string test;
+    if(true)
+    {
+         test = "test";
+    }
+
+    cout<<test<<endl;
 }

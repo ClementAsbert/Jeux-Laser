@@ -18,6 +18,7 @@ public :
     //
 private:
     int d_rows, d_columns;
+    //mettre un tableau de pointeur a deux dimensions  de case contenant tous les case du tableau
 };
 
 

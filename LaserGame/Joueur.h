@@ -12,21 +12,21 @@ class joueur{
 public:
     joueur();
     void menu();
-    void start(); //lance partie
+    int start(); //lance partie
     void generate_terrain();
     void place_mirror();
     void erase_mirror();
     void reset();
     void shoot();
+    char nextcharCase() const;
     void score() const;
     void afficher() const;
 private:
     int d_score;
     Terrain d_terrain;
-    Cannon d_cannon;
-    Laser d_laser;
-    vector<unique_ptr<Mirroir>> d_mirroir;
-    vector<unique_ptr<Laser>> d_laser;
+    Canon d_cannon;
+    vector<Mirroir> d_mirroir;
+    vector<Laser> d_laser;
 
 };
 

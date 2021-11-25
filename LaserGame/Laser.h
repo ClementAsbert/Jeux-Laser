@@ -2,9 +2,10 @@
 #define LASER_H_INCLUDED
 #include "Case.h"
 #include <string>
+using namespace std;
 class Laser : public Case{
 public:
-    Laser(int x,int y);
+    Laser(int x,int y, string direction);
     virtual int getX() const override;
     virtual int getY() const override;
     virtual char getChar() const override;
