@@ -8,17 +8,19 @@ class Terrain {
 public :
     Terrain(int rows, int columns);
     Terrain();
+    ~Terrain();
     int getRows() const;
     int getColumn() const;
     int setRows(int rows) ;
     int setColumn(int columns) ;
-    Case getCase(int row,int column) const;
-    //Case setCase() const;
+    std::unique_ptr<Case> getCase(int row,int column) const;
+    void setCase(int row,int column,std::unique_ptr<Case> d);
+    void affichageTexte() const;
     //save()
     //
 private:
     int d_rows, d_columns;
-    //mettre un tableau de pointeur a deux dimensions  de case contenant tous les case du tableau
+    std::unique_ptr<Case>** tab2D;
 };
 
 

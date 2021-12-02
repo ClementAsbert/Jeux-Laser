@@ -6,6 +6,7 @@
 #include <memory>
 #include "Laser.h"
 #include "Canon.h"
+#include "Mur.h"
 using namespace std;
 
 class joueur{

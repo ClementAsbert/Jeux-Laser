@@ -5,6 +5,7 @@
 class Canon : public Case{
 public:
     Canon(int x,int y);
+    Canon();
     virtual int getX() const override;
     virtual int getY() const override;
     virtual void setX(int x)  override;

@@ -2,11 +2,15 @@
 #include "Terrain.h"
 #include "Mirroir.h"
 #include "Canon.h"
+#include "Cible.h"
 #include <string>
 #include <iostream>
-using namespace std;
+#include <stdlib.h>
+#include <ctime>
 
-joueur::joueur() {}
+
+joueur::joueur():d_score{0},d_terrain{},d_cannon{},d_mirroir{},d_laser{}
+{}
 
 void joueur::menu()
 {
@@ -34,7 +38,7 @@ int joueur::start() //lance partie
     do
     {
         cout<<"LASER GAME"<<'\n'<<'\n';
-        cout<<"(1) Générer un terrain"<<'\n';
+        cout<<"(1) Generer un terrain"<<'\n';
         cout<<"(2) Lancer une partie"<<'\n';
         cout<<"(3) Afficher une partie"<<'\n';
         cout<<"(4) Placer mirroir"<<'\n';
@@ -53,39 +57,81 @@ void joueur::generate_terrain()
     int x,y;
     cout<<"donner la taille du terrain en premier x et y : "<<endl;
     cin>>x>>y;
-    d_terrain.setRows(x);
-    d_terrain.setColumn(y);
-    d_cannon.setX(10);
-    d_cannon.setY(1);
-    menu();
+
+    d_terrain=Terrain(x,y);
+    srand(time(0));
+    int rx=rand()%x;
+    int ry;
+    if(rx!=0 && rx!=x-1)
+        ry=rand()%2*(y-1);
+    else
+        ry=rand()%(y-2)+1;
+    d_cannon.setX(rx);
+    d_cannon.setY(ry);
+    for(int i=0;i<x;i++){
+        d_terrain.setCase(i,0,make_unique<Mur>());
+        d_terrain.setCase(i,y-1,make_unique<Mur>());
+    }
+
+    for(int i=0;i<y;i++){
+        d_terrain.setCase(0,i,make_unique<Mur>());
+        d_terrain.setCase(x-1,i,make_unique<Mur>());
+    }
+    d_terrain.setCase(rx,ry,make_unique<Canon>());
+
+    if(ry==0){
+        rx=rand()%(x-2)+1;
+        d_terrain.setCase(rx,y-1,make_unique<Cible>());
+    }
+    else if(ry==y-1){
+        rx=rand()%(x-2)+1;
+        d_terrain.setCase(rx,0,make_unique<Cible>());
+    }
+    else if(rx==0){
+        ry=rand()%(y-2)+1;
+        d_terrain.setCase(x-1,ry,make_unique<Cible>());
+    }
+    else{
+        ry=rand()%(y-2)+1;
+        d_terrain.setCase(0,ry,make_unique<Cible>());
+    }
 }
 
 
 void joueur::place_mirror()
 {
     int x,y;
+    int num;
     char c;
     //NIVEAU MOYEN 4 MIRROIR
     for(int i = 0; i<4; i++)
     {
-        cout<<"donner les coords du mirroir n°"<<i+1<<" avec x et y  puis le type de mirroir (/ ou \ ): ";
+        cout<<"donner les coords du mirroir numero : "<<i+1<<" avec x et y  puis le type de mirroir (/(0) ou \\(1) ): ";
         cin>>x>>y;
-        cin>>c;
-        while(c != '/' || c!= '\\')
+        cin>>num;
+        while(num != 0 && num !=1)
         {
-            cout<<"donner un mirroir du type (/ ou \ ): ";
-            cin>>c;
+            cout<<"donner un mirroir du type (/(0) ou \\(1) ): ";
+            cin>>num;
         }
 
-        while(d_terrain.getCase(x,y) != "")
+        while(d_terrain.getCase(x,y) != nullptr)
         {
             cout<<"redonner correctement le placement du mirroir : ";
             cin>>x>>y;
         }
 
-        d_mirroir.push_back(make_unique<Mirroir> (x,y,c))
+        if(num == 0)
+        {
+            c='/';
+            d_terrain.setCase(x,y,make_unique<Mirroir>(x,y,c));
+        }
+        else
+        {
+            c='\\';
+            d_terrain.setCase(x,y,make_unique<Mirroir>(x,y,c));
+        }
     }
-    menu();
 }
 
 //erase last mirror
@@ -105,25 +151,25 @@ void joueur::reset()
 //je donne les coord du laser renvoi
 char joueur::nextcharCase() const
 {
-    Laser l = d_laser.back();
+    auto l=d_laser.back();
     if(l.getDirection() == "droite")
     {
-        return d_terrain.getCase(l.getX(),l.getY()+1).getChar();
+        return d_terrain.getCase(l.getX(),l.getY()+1)->getChar();
     }
 
     if(l.getDirection() == "gauche")
     {
-        return d_terrain.getCase(l.getX(),l.getY()-1).getChar();
+        return d_terrain.getCase(l.getX(),l.getY()-1)->getChar();
     }
 
     if(l.getDirection() == "haut")
     {
-        return d_terrain.getCase(l.getX()+1,l.getY()).getChar();
+        return d_terrain.getCase(l.getX()+1,l.getY())->getChar();
     }
 
     if(l.getDirection() == "bas")
     {
-        return d_terrain.getCase(l.getX()-1,l.getY()).getChar();
+        return d_terrain.getCase(l.getX()-1,l.getY())->getChar();
     }
 }
 
@@ -276,7 +322,7 @@ void joueur::score() const
 
 }
 
-void joueur::afficher()
+void joueur::afficher() const
 {
-
+    d_terrain.affichageTexte();
 }

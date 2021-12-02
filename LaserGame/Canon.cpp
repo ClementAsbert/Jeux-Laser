@@ -2,6 +2,10 @@
 
 Canon::Canon(int x,int y) : d_x{x}, d_y{y}, d_c{'#'}
 {}
+
+Canon::Canon() : d_x{0}, d_y{0}, d_c{'#'}
+{}
+
 int Canon::getX() const
 {
     return d_x;
