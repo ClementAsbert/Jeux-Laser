@@ -1,14 +1,11 @@
 #include <iostream>
 #include <string>
+#include "Joueur.h"
+
 using namespace std;
 
 int main()
 {
-    string test;
-    if(true)
-    {
-         test = "test";
-    }
-
-    cout<<test<<endl;
+    joueur j{};
+    j.menu();
 }

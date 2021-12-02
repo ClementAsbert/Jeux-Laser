@@ -8,6 +8,8 @@ public:
     Laser(int x,int y, string direction);
     virtual int getX() const override;
     virtual int getY() const override;
+    virtual void setX(int x) override;
+    virtual void setY(int y) override;
     virtual char getChar() const override;
     virtual void setChar(char c) override;
     void setDirection(string direction);
