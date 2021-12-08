@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1638968925 source:c:\users\huseyin yurtseven\desktop\l3\algo\tp\repertoire\main.cpp
+	<iostream>
+	"dirent.h"
+	<string>
+
+1638966926 c:\users\huseyin yurtseven\desktop\l3\algo\tp\repertoire\dirent.h
+	<stdio.h>
+	<stdarg.h>
+	<windef.h>
+	<winbase.h>
+	<wchar.h>
+	<string.h>
+	<stdlib.h>
+	<malloc.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<errno.h>
+

@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1636974354 source:c:\users\huseyin yurtseven\desktop\l3\poo\plat1\main.cpp
+	<iostream>
+	"plat.h"
+	"afficheur.h"
+
+1636973991 c:\users\huseyin yurtseven\desktop\l3\poo\plat1\plat.h
+	<string>
+	<vector>
+	<memory>
+
+1636974057 source:c:\users\huseyin yurtseven\desktop\l3\poo\plat1\plat.cpp
+	"plat.h"
+	"afficheur.h"
+
+1636974371 c:\users\huseyin yurtseven\desktop\l3\poo\plat1\afficheur.h
+
+1636972973 source:c:\users\huseyin yurtseven\desktop\l3\poo\plat1\afficheur.cpp
+	"afficheur.h"
+	"iostream"
+	"plat.h"
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="turtle" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/turtle" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/turtle" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="graphics.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="point.cpp" />
+		<Unit filename="point.h" />
+		<Unit filename="progturtle.cpp" />
+		<Unit filename="progturtle.h" />
+		<Unit filename="squareprogturtle.cpp" />
+		<Unit filename="squareprogturtle.h" />
+		<Unit filename="turtle.cpp" />
+		<Unit filename="turtle.h" />
+		<Unit filename="winbgi.cpp" />
+		<Unit filename="xTurtle.cpp" />
+		<Unit filename="xTurtle.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,44 @@
+# depslib dependency file v1.0
+1634308963 source:c:\users\huseyin yurtseven\desktop\l3\poo\tortue\td3_turtle_prof\turtle\main.cpp
+	<iostream>
+	"turtle.h"
+	"graphics.h"
+	"xTurtle.h"
+
+1634307161 c:\users\huseyin yurtseven\desktop\l3\poo\tortue\td3_turtle_prof\turtle\turtle.h
+	"point.h"
+
+1634307161 c:\users\huseyin yurtseven\desktop\l3\poo\tortue\td3_turtle_prof\turtle\point.h
+	<iosfwd>
+
+1634307161 c:\users\huseyin yurtseven\desktop\l3\poo\tortue\td3_turtle_prof\turtle\graphics.h
+
+1634307161 source:c:\users\huseyin yurtseven\desktop\l3\poo\tortue\td3_turtle_prof\turtle\point.cpp
+	<iostream>
+	<cmath>
+	"point.h"
+
+1634307161 source:c:\users\huseyin yurtseven\desktop\l3\poo\tortue\td3_turtle_prof\turtle\turtle.cpp
+	<cmath>
+	"graphics.h"
+	"turtle.h"
+
+1634307161 source:c:\users\huseyin yurtseven\desktop\l3\poo\tortue\td3_turtle_prof\turtle\winbgi.cpp
+	<windows.h>
+	<stddef.h>
+	<stdio.h>
+	<math.h>
+	"graphics.h"
+
+1634309283 source:c:\users\huseyin yurtseven\desktop\l3\poo\tortue\td3_turtle_prof\turtle\xturtle.cpp
+	<iostream>
+	"xTurtle.h"
+	"turtle.h"
+
+1634309319 c:\users\huseyin yurtseven\desktop\l3\poo\tortue\td3_turtle_prof\turtle\xturtle.h
+	<iostream>
+	"turtle.h"
+	"point.h"
+
+1634311629 source:c:\users\huseyin yurtseven\desktop\l3\poo\tortue\td3_turtle_prof\turtle\squareprogturtle.cpp
+

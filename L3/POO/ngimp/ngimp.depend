@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1636373298 source:c:\users\huseyin yurtseven\desktop\l3\poo\ngimp\image.cpp
+	"image.h"
+
+1636556083 c:\users\huseyin yurtseven\desktop\l3\poo\ngimp\image.h
+
+1636373874 source:c:\users\huseyin yurtseven\desktop\l3\poo\ngimp\main.cpp
+	"ngimp.h"
+
+1636560321 c:\users\huseyin yurtseven\desktop\l3\poo\ngimp\ngimp.h
+	<memory>
+	"image.h"
+
+1636556911 source:c:\users\huseyin yurtseven\desktop\l3\poo\ngimp\transformation.cpp
+	"transformation.h"
+	"image.h"
+
+1636558243 c:\users\huseyin yurtseven\desktop\l3\poo\ngimp\transformation.h
+
+1636560571 source:c:\users\huseyin yurtseven\desktop\l3\poo\ngimp\ngimp.cpp
+	<iostream>
+	"ngimp.h"
+	<memory>
+	"image.h"
+	"transformation.h"
+

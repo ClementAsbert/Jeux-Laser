@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1633178479 source:c:\users\huseyin yurtseven\desktop\l3\algo\tp\recursive\main.cpp
+	<iostream>
+	<cmath>
+	"graphics.h"
+	"point.h"
+
+1633178151 c:\users\huseyin yurtseven\desktop\l3\algo\tp\recursive\graphics.h
+
+1633178151 c:\users\huseyin yurtseven\desktop\l3\algo\tp\recursive\point.h
+	<iostream>
+
+1633178151 source:c:\users\huseyin yurtseven\desktop\l3\algo\tp\recursive\point.cpp
+	"point.h"
+	<cmath>
+	<iostream>
+
+1633178151 source:c:\users\huseyin yurtseven\desktop\l3\algo\tp\recursive\winbgi.cpp
+	<windows.h>
+	<stddef.h>
+	<stdio.h>
+	<math.h>
+	"graphics.h"
+

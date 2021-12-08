@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1633100560 source:c:\users\lucbu\documents\c++\recursive\winbgi.cpp
+	<windows.h>
+	<stddef.h>
+	<stdio.h>
+	<math.h>
+	"graphics.h"
+
+1633100559 c:\users\lucbu\documents\c++\recursive\graphics.h
+
+1633096960 source:c:\users\lucbu\documents\c++\recursive\hanoi\winbgi.cpp
+	<windows.h>
+	<stddef.h>
+	<stdio.h>
+	<math.h>
+	"graphics.h"
+
+1633096959 c:\users\lucbu\documents\c++\recursive\hanoi\graphics.h
+
+1634216622 source:c:\users\lucbu\documents\c++\recursive\hanoi\main.cpp
+	<iostream>
+	"graphics.h"
+	<vector>
+
+1635951345 source:c:\users\huseyin yurtseven\desktop\l3\algo\tp\hanoi\main.cpp
+	<iostream>
+	"graphics.h"
+	<vector>
+	<unistd.h>
+
+1635951345 c:\users\huseyin yurtseven\desktop\l3\algo\tp\hanoi\graphics.h
+
+1635951345 source:c:\users\huseyin yurtseven\desktop\l3\algo\tp\hanoi\winbgi.cpp
+	<windows.h>
+	<stddef.h>
+	<stdio.h>
+	<math.h>
+	"graphics.h"
+

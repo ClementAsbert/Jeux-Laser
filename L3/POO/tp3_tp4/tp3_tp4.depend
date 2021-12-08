@@ -1,0 +1,61 @@
+# depslib dependency file v1.0
+1636810030 source:c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\main.cpp
+	"turtledrawapplication.h"
+	"graphics.h"
+
+1637586386 c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\turtledrawapplication.h
+	<vector>
+	<memory>
+	"turtle.h"
+	"turtleManipulation.h"
+
+1636809486 c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\turtle.h
+	"point.h"
+
+1381228746 c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\point.h
+	<iosfwd>
+
+1381238168 c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\graphics.h
+
+1381228772 source:c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\point.cpp
+	<iostream>
+	<cmath>
+	"point.h"
+
+1636809486 source:c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\turtle.cpp
+	<cmath>
+	"graphics.h"
+	"turtle.h"
+
+1637049691 source:c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\turtledrawapplication.cpp
+	"turtledrawapplication.h"
+	"turtleMover.h"
+	"turtleManipulation.h"
+	"graphics.h"
+	<iostream>
+
+1381238172 source:c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\winbgi.cpp
+	<windows.h>
+	<stddef.h>
+	<stdio.h>
+	<math.h>
+	"graphics.h"
+
+1637046991 source:c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\turtlemanipulation.cpp
+
+1637049182 source:c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\turtlemover.cpp
+	"turtleMover.h"
+	"turtle.h"
+
+1637049150 c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\turtlemover.h
+	"turtleManipulation.h"
+
+1637049024 c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\turtlemanipulation.h
+
+1637050755 source:c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\turtlepen.cpp
+	"turtlepen.h"
+	"turtle.h"
+
+1637585405 c:\users\huseyin yurtseven\desktop\l3\poo\tp3_tp4\turtlepen.h
+	"turtleManipulation.h"
+
