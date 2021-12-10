@@ -25,9 +25,10 @@ int Terrain::getColumn() const {return d_columns;}
 int Terrain::setRows(int rows) {d_rows = rows;}
 int Terrain::setColumn(int columns) {d_columns = columns;}
 
-std::unique_ptr<Case> Terrain::getCase(int row,int column) const { return std::move(tab2D[row][column]); }
+std::unique_ptr<Case> Terrain::getCase(int row,int column)  { return std::move(tab2D[row][column]); }
+char Terrain::getCharCase(int row, int column) const {return tab2D[row][column]->getChar();}
 
-void Terrain::setCase(int row,int column,std::unique_ptr<Case> d){
+void Terrain::setCase(int row, int column, std::unique_ptr<Case> d){
     tab2D[row][column]=std::move(d);
 }
 

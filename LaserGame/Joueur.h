@@ -20,7 +20,7 @@ public:
     void erase_mirror();
     void reset();
     void shoot();
-    char nextcharCase() const;
+    char nextcharCase(Laser l) ;
     void score() const;
     void afficher() const;
 private:

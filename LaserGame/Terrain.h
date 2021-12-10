@@ -13,7 +13,8 @@ public :
     int getColumn() const;
     int setRows(int rows) ;
     int setColumn(int columns) ;
-    std::unique_ptr<Case> getCase(int row,int column) const;
+    std::unique_ptr<Case> getCase(int row,int column) ;
+    char getCharCase(int row, int column) const;
     void setCase(int row,int column,std::unique_ptr<Case> d);
     void affichageTexte() const;
     void removeMirror(int x, int y);

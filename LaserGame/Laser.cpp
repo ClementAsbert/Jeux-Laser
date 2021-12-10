@@ -1,6 +1,17 @@
 #include "Laser.h"
 #include <string>
-Laser::Laser(int x,int y, string direction): d_x{x}, d_y{y}, d_c{'-'}, d_direction{direction}
+Laser::Laser(int x,int y, string direction): d_x{x}, d_y{y}, d_direction{direction}
+{
+    if(direction == "haut"|| direction == "bas")
+    {
+        d_c = '|';
+    }else
+    {
+        d_c = '-';
+    }
+}
+
+Laser::Laser(): d_x{0}, d_y{0}, d_c{'-'}
 {}
 
 
