@@ -48,7 +48,11 @@
 		<Unit filename="Mur.h" />
 		<Unit filename="Terrain.cpp" />
 		<Unit filename="Terrain.h" />
+		<Unit filename="doctest.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="sol.cpp" />
+		<Unit filename="sol.h" />
+		<Unit filename="testunit.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

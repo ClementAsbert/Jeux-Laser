@@ -7,6 +7,7 @@
 #include "Laser.h"
 #include "Canon.h"
 #include "Mur.h"
+#include <vector>
 using namespace std;
 
 class joueur{
@@ -19,9 +20,10 @@ public:
     void erase_mirror();
     void reset();
     void shoot();
-    char nextcharCase() const;
+    char nextcharCase(Laser l) ;
     void score() const;
     void afficher() const;
+    void defaite() const;
 private:
     int d_score;
     Terrain d_terrain;
