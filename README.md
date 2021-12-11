@@ -16,7 +16,7 @@ Nous avons ici un jeux de tir comportants des lasers, des mirroirs et un canon e
 
 <br />
 
-<a class="anchor" id="#decomposition" aria-hidden="true"> </a>
+<a class="anchor" id="decomposition" aria-hidden="true"> </a>
 ## La decomposition du projet : 
 
 Fichiers header : 
@@ -46,7 +46,7 @@ Fichiers sources :
 
 
 
-<a class="anchor" id="#groupe" aria-hidden="true"> </a>
+<a class="anchor" id="groupe" aria-hidden="true"> </a>
 ## Composition du groupe 
 - YURTSEVEN Huseyin
 - GUEZI Yanis
