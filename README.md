@@ -1,18 +1,18 @@
-### Laser Game : Projet qualite de programmation 👋 
+### Laser Game : Projet qualité de programmation 👋 
 
 [![Website](https://img.shields.io/website?label=UHA&style=for-the-badge&url=https%3A%2F%2Fcodestackr.com)](https://www.uha.fr/fr/index.html)
 
 
-- Logiciel utilise : Code::Blocks
+- Logiciel utilisé : Code::Blocks
 - Langage : C++
-- Annee Scolaire : L3 Informatique 2021-2022
-- Matiere : Qualite de programmation
+- Année Scolaire : L3 Informatique 2021-2022
+- Matière : Qualité de programmation
 - Professeur : M. RIVIÈRE Stéphane
 - <a href="#decomposition">Decomposition du projet </a>
 - <a href="#groupe">Composition du groupe </a>
 
 ## Explication du projet : 
-Nous avons ici un jeux de tir avec comportants des lasers, des mirroirs et un canon et une cible. L'utilisateur choisit la taille du terrain et ainsi que le positionnement des mirroirs. Les mirroirs ont pour but de faire devier le laser selon le laser placer sur le terrain, tout en evitant les murs. 
+Nous avons ici un jeux de tir comportants des lasers, des mirroirs et un canon et une cible. L'utilisateur choisit la taille du terrain et ainsi que le positionnement des mirroirs. Les mirroirs ont pour but de faire devier le laser selon le laser placer sur le terrain, tout en évitant les murs. 
 
 <br />
 
@@ -50,7 +50,7 @@ Fichiers sources :
 ## Composition du groupe 
 - YURTSEVEN Huseyin
 - GUEZI Yanis
-- ASBERT Clement
+- ASBERT Clément
 - BURCKEL Luc
 
 <br />
