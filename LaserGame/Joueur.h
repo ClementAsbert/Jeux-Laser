@@ -23,6 +23,7 @@ public:
     char nextcharCase(Laser l) ;
     void score() const;
     void afficher() const;
+    void defaite() const;
 private:
     int d_score;
     Terrain d_terrain;
