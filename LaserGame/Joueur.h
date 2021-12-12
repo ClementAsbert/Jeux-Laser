@@ -8,6 +8,7 @@
 #include "Canon.h"
 #include "Mur.h"
 #include <vector>
+#include <string>
 using namespace std;
 
 class joueur{
@@ -24,6 +25,10 @@ public:
     void score() const;
     void afficher() const;
     void defaite() const;
+
+    void nb_line_and_column(string filename, int &nbline, int &nbcolumn);
+    Terrain read();
+    bool save_write();
 private:
     int d_score;
     Terrain d_terrain;

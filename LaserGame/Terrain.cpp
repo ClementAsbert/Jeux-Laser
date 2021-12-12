@@ -1,12 +1,11 @@
 #include "Terrain.h"
 #include "Case.h"
 #include <iostream>
-
 /**
  * @brief Construct a new Terrain:: Terrain object
- * 
- * @param rows 
- * @param columns 
+ *
+ * @param rows
+ * @param columns
  */
 Terrain::Terrain(int rows, int columns) : d_rows{rows}, d_columns{columns}
 {
@@ -17,7 +16,7 @@ Terrain::Terrain(int rows, int columns) : d_rows{rows}, d_columns{columns}
 
 /**
  * @brief Construct a new Terrain:: Terrain object
- * 
+ *
  */
 Terrain::Terrain() : d_rows{0}, d_columns{0}
 {
@@ -25,7 +24,7 @@ Terrain::Terrain() : d_rows{0}, d_columns{0}
 
 /**
  * @brief Destroy the Terrain:: Terrain object
- * 
+ *
  */
 Terrain::~Terrain()
 {
@@ -33,58 +32,58 @@ Terrain::~Terrain()
 
 /**
  * @brief return d_rows
- * 
- * @return int 
+ *
+ * @return int
  */
 int Terrain::getRows() const { return d_rows; }
 
 /**
  * @brief return d_columns
- * 
- * @return int 
+ *
+ * @return int
  */
 int Terrain::getColumn() const { return d_columns; }
 
 /**
  * @brief modif d_rows
- * 
- * @param rows 
- * @return int 
+ *
+ * @param rows
+ * @return int
  */
 int Terrain::setRows(int rows) { d_rows = rows; }
 
 /**
  * @brief modif d_columns
- * 
- * @param columns 
- * @return int 
+ *
+ * @param columns
+ * @return int
  */
 int Terrain::setColumn(int columns) { d_columns = columns; }
 
 /**
  * @brief return pointer of Case
- * 
- * @param row 
- * @param column 
- * @return std::unique_ptr<Case> 
+ *
+ * @param row
+ * @param column
+ * @return std::unique_ptr<Case>
  */
 std::unique_ptr<Case> Terrain::getCase(int row, int column) { return std::move(tab2D[row][column]); }
 
 /**
  * @brief return char of pointer this case
- * 
- * @param row 
- * @param column 
- * @return char 
+ *
+ * @param row
+ * @param column
+ * @return char
  */
 char Terrain::getCharCase(int row, int column) const { return tab2D[row][column]->getChar(); }
 
 /**
  * @brief modif case
- * 
- * @param row 
- * @param column 
- * @param d 
+ *
+ * @param row
+ * @param column
+ * @param d
  */
 void Terrain::setCase(int row, int column, std::unique_ptr<Case> d)
 {
@@ -93,7 +92,7 @@ void Terrain::setCase(int row, int column, std::unique_ptr<Case> d)
 
 /**
  * @brief print terrain
- * 
+ *
  */
 void Terrain::affichageTexte() const
 {
@@ -117,11 +116,13 @@ void Terrain::affichageTexte() const
 
 /**
  * @brief remove element in this case
- * 
- * @param x 
- * @param y 
+ *
+ * @param x
+ * @param y
  */
 void Terrain::removeMirror(int x, int y)
 {
     tab2D[x][y] = nullptr;
 }
+
+

@@ -9,20 +9,21 @@
 #include <stdlib.h>
 #include <ctime>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
 /**
  * @brief Construct a new joueur::joueur object
- * 
+ *
  */
 joueur::joueur() : d_score{0}, d_terrain{}, d_cannon{}, d_mirroir{}, d_laser{}
 {
 }
 
 /**
- * @brief menu du jeux 
- * 
+ * @brief menu du jeux
+ *
  */
 void joueur::menu()
 {
@@ -50,6 +51,12 @@ void joueur::menu()
         case 6:
             reset();
             break;
+        case 7:
+            read();
+            break;
+        case 8:
+            save_write();
+            break;
         default:
             goOn = false;
         }
@@ -58,8 +65,8 @@ void joueur::menu()
 
 /**
  * @brief start game
- * 
- * @return int 
+ *
+ * @return int
  */
 int joueur::start() //lance partie
 {
@@ -75,17 +82,19 @@ int joueur::start() //lance partie
         cout << "(4) Placer mirroir" << '\n';
         cout << "(5) Effacer mirroir (dernier mirroir)" << '\n';
         cout << "(6) Reset" << endl;
-        cout << "(7) Quitter la partie" << endl;
+        cout << "(7) Charger un Terrain a partir d un fichier" << endl;
+        cout << "(8) Sauvegarder un terrain" << endl;
+        cout << "(9) Quitter la partie" << endl;
         cout << endl
              << "votre choix : ";
         cin >> choice;
-    } while (choice < 1 || choice > 7);
+    } while (choice < 1 || choice > 9);
     return choice;
 }
 
 /**
  * @brief generate terrain
- * 
+ *
  */
 void joueur::generate_terrain()
 {
@@ -155,7 +164,7 @@ void joueur::generate_terrain()
 
 /**
  * @brief place mirror
- * 
+ *
  */
 void joueur::place_mirror()
 {
@@ -207,7 +216,7 @@ void joueur::place_mirror()
 
 /**
  * @brief affichage defaite
- * 
+ *
  */
 void joueur::defaite() const
 {
@@ -228,7 +237,7 @@ void joueur::defaite() const
 
 /**
  * @brief efface derniere mirroir
- * 
+ *
  */
 void joueur::erase_mirror()
 {
@@ -241,7 +250,7 @@ void joueur::erase_mirror()
 
 /**
  * @brief efface tous les mirroir
- * 
+ *
  */
 void joueur::reset()
 {
@@ -255,9 +264,9 @@ void joueur::reset()
 
 /**
  * @brief renvoi le char de la prochaine case
- * 
- * @param l 
- * @return char 
+ *
+ * @param l
+ * @return char
  */
 char joueur::nextcharCase(Laser l)
 {
@@ -284,8 +293,8 @@ char joueur::nextcharCase(Laser l)
 }
 
 /**
- * @brief tire 
- * 
+ * @brief tire
+ *
  */
 void joueur::shoot()
 {
@@ -501,7 +510,7 @@ void joueur::shoot()
 
 /**
  * @brief stocke le score de l'utilisateur et l'affiche
- * 
+ *
  */
 void joueur::score() const
 {
@@ -511,9 +520,125 @@ void joueur::score() const
 
 /**
  * @brief affiche le terrain
- * 
+ *
  */
 void joueur::afficher() const
 {
     d_terrain.affichageTexte();
+}
+
+
+/**
+ * @brief return with argument count of line and column in file filename
+ *
+ * @param filename
+ * @param nbline
+ * @param nbcolumn
+ */
+void joueur::nb_line_and_column(string filename, int &nbline, int &nbcolumn)
+{
+    ifstream fichier(filename);
+    string ligne;
+    nbline = 0;
+    while (getline(fichier, ligne))
+    {
+        nbline++;
+        nbcolumn = ligne.size();
+    }
+    fichier.close();
+}
+
+/**
+ * @brief Lis le fichier et stock le terrain
+ *
+ */
+Terrain joueur::read()
+{
+
+    cout<<"donner le nom du fichier avec extension :";
+    string filename;
+    cin>>filename;
+
+
+    //récupere la taille du terrain et creer le terrain qui est vide pour l'instant
+    int nblignne = 0;
+    int nb_col = 0;
+    nb_line_and_column(filename, nblignne, nb_col);
+    d_terrain = Terrain(nblignne, nb_col);
+
+
+    ifstream fichier(filename);
+    if (fichier)
+    {
+        //L'ouverture s'est bien passée, on peut donc lire
+
+        string ligne; //Une variable pour stocker les lignes lues
+        int j = 0;
+        while (getline(fichier, ligne)) //Tant qu'on n'est pas à la fin, on lit
+        {
+            for (int i = 0; i < ligne.size(); i++)
+            {
+                if(ligne[i]=='X')
+                {
+                    d_terrain.setCase(j,i,make_unique<Mur>(j, i));
+                }
+
+                if(ligne[i] == '@')
+                {
+                    d_terrain.setCase(j,i,make_unique<Cible>(j, i));
+                }
+
+                if(ligne[i] == ' ')
+                {
+                    d_terrain.setCase(j,i,make_unique<sol>(j, i));
+                }
+
+                if(ligne[i] == '#')
+                {
+                    d_terrain.setCase(j,i,make_unique<Canon>(j, i));
+                    d_cannon.setX(j);
+                    d_cannon.setY(i);
+                }
+            }
+            j++;
+        }
+    }
+    else
+    {
+        cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << endl;
+    }
+    return d_terrain;
+}
+
+
+
+/**
+ * @brief Sauvegarde le fichier
+ *
+ */
+bool joueur::save_write()
+{
+    cout<<"donner le nom du fichier avec extension :";
+    string filename;
+    cin>>filename;
+    string const nomFichier(filename);
+    ofstream File(nomFichier.c_str());
+
+    if (File)
+    {
+        for (int i = 0; i < d_terrain.getRows(); i++)
+        {
+            for (int j = 0; j < d_terrain.getColumn(); j++)
+            {
+                File << d_terrain.getCharCase(i,j);
+            }
+            File << endl;
+        }
+    }
+    else
+    {
+        cout << "ERROR: Impossible d'ouvrir le fichier." << endl;
+        return false;
+    }
+    return true;
 }

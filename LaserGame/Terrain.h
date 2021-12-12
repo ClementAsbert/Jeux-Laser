@@ -18,8 +18,8 @@ public :
     void setCase(int row,int column,std::unique_ptr<Case> d);
     void affichageTexte() const;
     void removeMirror(int x, int y);
-    //save()
-    //
+
+
 private:
     int d_rows, d_columns;
     std::unique_ptr<Case>** tab2D;
