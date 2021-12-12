@@ -12,7 +12,7 @@
 - <a href="#groupe">Composition du groupe </a>
 
 ## Explication du projet : 
-Nous avons ici un jeux de tir comportants des lasers, des mirroirs et un canon et une cible. L'utilisateur choisit la taille du terrain et ainsi que le positionnement des mirroirs. Les mirroirs ont pour but de faire devier le laser selon le laser placer sur le terrain, tout en évitant les murs. 
+Nous avons ici un jeux de tir comportants des lasers, des mirroirs, un canon et une cible. L'utilisateur choisit la taille du terrain et ainsi que le positionnement des mirroirs. Les mirroirs ont pour but de faire devier le laser selon le laser placer sur le terrain, tout en évitant les murs. 
 
 <br />
 
