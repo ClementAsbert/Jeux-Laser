@@ -271,6 +271,7 @@ void joueur::reset()
 char joueur::nextcharCase(Laser l)
 {
     //donne laser
+    //on peut pas mettre sous forme de switch car nous obtenons une erreur du type "s"
     if (l.getDirection() == "droite")
     {
         return d_terrain.getCharCase(l.getX(), l.getY() + 1);
@@ -291,6 +292,147 @@ char joueur::nextcharCase(Laser l)
         return d_terrain.getCharCase(l.getX() + 1, l.getY());
     }
 }
+
+int joueur::number_direction(string direction) const
+{
+    if(direction == "haut")
+    {
+        return 1;
+    }
+    else if(direction == "bas")
+    {
+        return 2;
+    }
+    else if(direction == "gauche")
+    {
+        return 3;
+    }
+    else{
+        //direction droite
+        return 4;
+    }
+}
+
+
+void joueur::place_Laser_sl(string direction)
+{
+    int nb = number_direction(direction);
+    switch(nb)
+    {
+    case 1:
+        {
+        //si direction == haut alors viens du bas
+        //envoi vers droite
+
+        int xl =  d_laser.back().getX() - 1;
+        int yl =  d_laser.back().getY() + 1;
+
+        d_laser.push_back({xl, yl, "droite"});
+        d_terrain.removeMirror(xl, yl);
+        d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "droite"));
+        break;
+        }
+    case 2:
+        {
+        //si direction == haut viens de bas
+        //envoi vers gauche
+        int xl = d_laser.back().getX() + 1;
+        int yl = d_laser.back().getY() - 1;
+
+        d_laser.push_back({xl, yl, "gauche"});
+        d_terrain.removeMirror(xl, yl);
+        d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "gauche"));
+        break;
+        }
+    case 3:
+        {
+        //si direction == gauche il vient de droite
+        //envoi vers gauche
+        int xl = d_laser.back().getX() + 1;
+        int yl = d_laser.back().getY() - 1;
+
+        d_laser.push_back({xl, yl, "bas"});
+        d_terrain.removeMirror(xl, yl);
+        d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "bas"));
+        break;
+        }
+    case 4:
+        {
+        //si direction == droite  alors viens de gauche
+        //envoi vers bas
+        int xl = d_laser.back().getX() - 1;
+        int yl = d_laser.back().getY() + 1;
+
+        d_laser.push_back({xl, yl, "haut"});
+        d_terrain.removeMirror(xl, yl);
+        d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "haut"));
+        break;
+        }
+    }
+}
+
+
+void joueur::place_Laser_asl(string direction)
+{
+    int nb = number_direction(direction);
+    switch(nb)
+    {
+    //haut
+    case 1:
+        {
+            //si direction == haut alors viens du bas
+            //envoi vers gauche
+            int xl = d_laser.back().getX() - 1;
+            int yl = d_laser.back().getY() - 1;
+
+            d_laser.push_back({xl, yl, "gauche"});
+            d_terrain.removeMirror(xl, yl);
+            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "gauche"));
+            break;
+        }
+    //bas
+    case 2:
+        {
+            //si direction == haut viens de bas
+            //envoi vers gauche
+            int xl = d_laser.back().getX() + 1;
+            int yl = d_laser.back().getY() + 1;
+
+            d_laser.push_back({xl, yl, "droite"});
+            d_terrain.removeMirror(xl, yl);
+            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "droite"));
+            break;
+        }
+    //gauche
+    case 3:
+        {
+            //si direction == gauche il vient de droite
+            //envoi vers gauche
+            int xl = d_laser.back().getX() - 1;
+            int yl = d_laser.back().getY() - 1;
+
+            d_laser.push_back({xl, yl, "haut"});
+            d_terrain.removeMirror(xl, yl);
+            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "haut"));
+            break;
+        }
+    //droite
+    case 4:
+        {
+            //si direction == droite  alors viens de gauche
+            //envoi vers bas
+            int xl = d_laser.back().getX() + 1;
+            int yl = d_laser.back().getY() + 1;
+
+            d_laser.push_back({xl, yl, "bas"});
+            d_terrain.removeMirror(xl, yl);
+            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "bas"));
+            break;
+        }
+    }
+}
+
+
 
 /**
  * @brief tire
@@ -392,7 +534,6 @@ void joueur::shoot()
         }
 
         //mirroir \
-
         //correct
         if (nextcharCase(d_laser.back()) == '\\' && d_laser.back().getDirection() == "haut")
         {
@@ -425,7 +566,7 @@ void joueur::shoot()
             //si direction == gauche il vient de droite
             //envoi vers gauche
             int xl = d_laser.back().getX() - 1;
-            int yl = d_laser.back().getY() + 1;
+            int yl = d_laser.back().getY() - 1;
 
             d_laser.push_back({xl, yl, "haut"});
             d_terrain.removeMirror(xl, yl);
@@ -507,7 +648,6 @@ void joueur::shoot()
         }
     }
 }
-
 /**
  * @brief stocke le score de l'utilisateur et l'affiche
  *
@@ -578,27 +718,23 @@ Terrain joueur::read()
         {
             for (int i = 0; i < ligne.size(); i++)
             {
-                if(ligne[i]=='X')
-                {
-                    d_terrain.setCase(j,i,make_unique<Mur>(j, i));
-                }
+                switch(ligne[i]) {
+                    case 'X' :
+                        d_terrain.setCase(j,i,make_unique<Mur>(j, i));
+                        break;
+                    case '@' :
+                        d_terrain.setCase(j,i,make_unique<Cible>(j, i));
+                        break;
+                    case '#' :
+                        d_terrain.setCase(j,i,make_unique<Canon>(j, i));
+                        d_cannon.setX(j);
+                        d_cannon.setY(i);
+                        break;
+                    case ' ' :
+                        d_terrain.setCase(j,i,make_unique<sol>(j, i));
+                        break;
 
-                if(ligne[i] == '@')
-                {
-                    d_terrain.setCase(j,i,make_unique<Cible>(j, i));
-                }
-
-                if(ligne[i] == ' ')
-                {
-                    d_terrain.setCase(j,i,make_unique<sol>(j, i));
-                }
-
-                if(ligne[i] == '#')
-                {
-                    d_terrain.setCase(j,i,make_unique<Canon>(j, i));
-                    d_cannon.setX(j);
-                    d_cannon.setY(i);
-                }
+                    }
             }
             j++;
         }
