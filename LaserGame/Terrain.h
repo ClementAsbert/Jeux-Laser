@@ -17,7 +17,7 @@ public :
     char getCharCase(int row, int column) const;
     void setCase(int row,int column,std::unique_ptr<Case> d);
     void affichageTexte() const;
-    void removeMirror(int x, int y);
+    void removeCase(int x, int y);
 
 
 private:

@@ -99,6 +99,8 @@ int joueur::start() //lance partie
 void joueur::generate_terrain()
 {
     int x, y;
+    d_laser.clear();
+    d_mirroir.clear();
     cout << "donner la taille du terrain en premier x et y : " << endl;
     cin >> x >> y;
 
@@ -244,7 +246,7 @@ void joueur::erase_mirror()
     cout << "efface le dernier mirroir ... :" << endl;
     int x = d_mirroir.back().getX();
     int y = d_mirroir.back().getY();
-    d_terrain.removeMirror(x, y);
+    d_terrain.removeCase(x, y);
     d_mirroir.pop_back();
 }
 
@@ -258,7 +260,7 @@ void joueur::reset()
     {
         int x = d_mirroir[i].getX();
         int y = d_mirroir[i].getY();
-        d_terrain.removeMirror(x, y);
+        d_terrain.removeCase(x, y);
     }
 }
 
@@ -293,6 +295,10 @@ char joueur::nextcharCase(Laser l)
     }
 }
 
+/**
+ * @brief renvoie le numero de la direction
+ * @param direction
+ */
 int joueur::number_direction(string direction) const
 {
     if(direction == "haut")
@@ -314,10 +320,15 @@ int joueur::number_direction(string direction) const
 }
 
 
-void joueur::place_Laser_sl(string direction)
+/**
+ * @brief place le prochain laser lorsqu'il rencontre un slash
+ * @param direction
+ * @param nb_direction
+ */
+void joueur::place_Laser_sl(string direction, int nb_direction)
 {
-    int nb = number_direction(direction);
-    switch(nb)
+    //int nb = number_direction(direction);
+    switch(nb_direction)
     {
     case 1:
         {
@@ -328,7 +339,7 @@ void joueur::place_Laser_sl(string direction)
         int yl =  d_laser.back().getY() + 1;
 
         d_laser.push_back({xl, yl, "droite"});
-        d_terrain.removeMirror(xl, yl);
+        d_terrain.removeCase(xl, yl);
         d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "droite"));
         break;
         }
@@ -340,7 +351,7 @@ void joueur::place_Laser_sl(string direction)
         int yl = d_laser.back().getY() - 1;
 
         d_laser.push_back({xl, yl, "gauche"});
-        d_terrain.removeMirror(xl, yl);
+        d_terrain.removeCase(xl, yl);
         d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "gauche"));
         break;
         }
@@ -352,7 +363,7 @@ void joueur::place_Laser_sl(string direction)
         int yl = d_laser.back().getY() - 1;
 
         d_laser.push_back({xl, yl, "bas"});
-        d_terrain.removeMirror(xl, yl);
+        d_terrain.removeCase(xl, yl);
         d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "bas"));
         break;
         }
@@ -364,18 +375,22 @@ void joueur::place_Laser_sl(string direction)
         int yl = d_laser.back().getY() + 1;
 
         d_laser.push_back({xl, yl, "haut"});
-        d_terrain.removeMirror(xl, yl);
+        d_terrain.removeCase(xl, yl);
         d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "haut"));
         break;
         }
     }
 }
 
-
-void joueur::place_Laser_asl(string direction)
+/**
+ * @brief place le prochain laser lorsqu'il rencontre un antislash
+ * @param direction
+ * @param nb_direction
+ */
+void joueur::place_Laser_asl(string direction, int nb_direction)
 {
-    int nb = number_direction(direction);
-    switch(nb)
+    //int nb = number_direction(direction);
+    switch(nb_direction)
     {
     //haut
     case 1:
@@ -386,7 +401,7 @@ void joueur::place_Laser_asl(string direction)
             int yl = d_laser.back().getY() - 1;
 
             d_laser.push_back({xl, yl, "gauche"});
-            d_terrain.removeMirror(xl, yl);
+            d_terrain.removeCase(xl, yl);
             d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "gauche"));
             break;
         }
@@ -399,7 +414,7 @@ void joueur::place_Laser_asl(string direction)
             int yl = d_laser.back().getY() + 1;
 
             d_laser.push_back({xl, yl, "droite"});
-            d_terrain.removeMirror(xl, yl);
+            d_terrain.removeCase(xl, yl);
             d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "droite"));
             break;
         }
@@ -412,7 +427,7 @@ void joueur::place_Laser_asl(string direction)
             int yl = d_laser.back().getY() - 1;
 
             d_laser.push_back({xl, yl, "haut"});
-            d_terrain.removeMirror(xl, yl);
+            d_terrain.removeCase(xl, yl);
             d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "haut"));
             break;
         }
@@ -425,13 +440,71 @@ void joueur::place_Laser_asl(string direction)
             int yl = d_laser.back().getY() + 1;
 
             d_laser.push_back({xl, yl, "bas"});
-            d_terrain.removeMirror(xl, yl);
+            d_terrain.removeCase(xl, yl);
             d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "bas"));
             break;
         }
     }
 }
 
+
+
+/**
+ * @brief place le prochain laser quand il y a rien devant
+ * @param direction
+ * @param nb_direction
+ */
+void joueur::place_Laser_vide(string direction, int nb_direction)
+{
+    //int nb = number_direction(direction);
+    switch(nb_direction)
+    {
+    //haut
+    case 1:
+        {
+            int xl = d_laser.back().getX() - 1;
+            int yl = d_laser.back().getY();
+
+            d_laser.push_back({xl, yl, "haut"});
+            d_terrain.removeCase(xl, yl);
+            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "haut"));
+            break;
+        }
+    //bas
+    case 2:
+        {
+            int xl = d_laser.back().getX() + 1;
+            int yl = d_laser.back().getY();
+
+            d_laser.push_back({xl, yl, "bas"});
+            d_terrain.removeCase(xl, yl);
+            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "bas"));
+            break;
+        }
+    //gauche
+    case 3:
+        {
+            int xl = d_laser.back().getX();
+            int yl = d_laser.back().getY() - 1;
+
+            d_laser.push_back({xl, yl, "gauche"});
+            d_terrain.removeCase(xl, yl);
+            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "gauche"));
+            break;
+        }
+    //droite
+    case 4:
+        {
+            int xl = d_laser.back().getX();
+            int yl = d_laser.back().getY() + 1;
+
+            d_laser.push_back({xl, yl, "droite"});
+            d_terrain.removeCase(xl, yl);
+            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "droite"));
+            break;
+        }
+    }
+}
 
 
 /**
@@ -445,31 +518,32 @@ void joueur::shoot()
     int ycannon = d_cannon.getY();
 
     //placement du premier laser
+    //inutile de faire un switch pour deux if a chaque fois
     if (d_cannon.getY() == 0)
     {
         d_laser.push_back({xcannon, ycannon + 1, "droite"});
-        d_terrain.removeMirror(xcannon, ycannon + 1);
+        d_terrain.removeCase(xcannon, ycannon + 1);
         d_terrain.setCase(xcannon, ycannon + 1, make_unique<Laser>(xcannon, ycannon + 1, "droite"));
     }
 
     if (d_cannon.getY() == d_terrain.getColumn() - 1)
     {
         d_laser.push_back({xcannon, ycannon - 1, "gauche"});
-        d_terrain.removeMirror(xcannon, ycannon - 1);
+        d_terrain.removeCase(xcannon, ycannon - 1);
         d_terrain.setCase(xcannon, ycannon - 1, make_unique<Laser>(xcannon, ycannon - 1, "gauche"));
     }
 
     if (d_cannon.getX() == 0)
     {
         d_laser.push_back({xcannon + 1, ycannon, "bas"});
-        d_terrain.removeMirror(xcannon + 1, ycannon);
+        d_terrain.removeCase(xcannon + 1, ycannon);
         d_terrain.setCase(xcannon + 1, ycannon, make_unique<Laser>(xcannon + 1, ycannon, "bas"));
     }
 
     if (d_cannon.getX() == d_terrain.getRows() - 1)
     {
         d_laser.push_back({xcannon - 1, ycannon, "haut"});
-        d_terrain.removeMirror(xcannon - 1, ycannon);
+        d_terrain.removeCase(xcannon - 1, ycannon);
         d_terrain.setCase(xcannon - 1, ycannon, make_unique<Laser>(xcannon - 1, ycannon, "haut"));
     }
 
@@ -480,110 +554,56 @@ void joueur::shoot()
     bool verif = true;
     while (verif)
     {
-        //correct
-        //si sa vient d'en bas (direction haut) va a droite
-        if (nextcharCase(d_laser.back()) == '/' && d_laser.back().getDirection() == "haut")
-        {
-            //si direction == haut alors viens du bas
-            //envoi vers droite
-
-            int xl = d_laser.back().getX() - 1;
-            int yl = d_laser.back().getY() + 1;
-
-            d_laser.push_back({xl, yl, "droite"});
-            d_terrain.removeMirror(xl, yl);
-            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "droite"));
-        }
-        //correct
-        if (nextcharCase(d_laser.back()) == '/' && d_laser.back().getDirection() == "droite")
-        {
-            //si direction == droite  alors viens de gauche
-            //envoi vers bas
-            int xl = d_laser.back().getX() - 1;
-            int yl = d_laser.back().getY() + 1;
-
-            d_laser.push_back({xl, yl, "haut"});
-            d_terrain.removeMirror(xl, yl);
-            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "haut"));
-        }
-
-        //corrrect
-        if (nextcharCase(d_laser.back()) == '/' && d_laser.back().getDirection() == "gauche")
-        {
-            //si direction == gauche il vient de droite
-            //envoi vers gauche
-            int xl = d_laser.back().getX() + 1;
-            int yl = d_laser.back().getY() - 1;
-
-            d_laser.push_back({xl, yl, "bas"});
-            d_terrain.removeMirror(xl, yl);
-            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "bas"));
-        }
+        //je recupere le numero de la direction pour pouvoir effectuer un switch sur le numéro après
+        int nb_direction = number_direction(d_laser.back().getDirection());
 
         //correct
-        if (nextcharCase(d_laser.back()) == '/' && d_laser.back().getDirection() == "bas")
+        //remaniement du code
+        if(nextcharCase(d_laser.back()) == '/')//hbgd
         {
-            //si direction == haut viens de bas
-            //envoi vers gauche
-            int xl = d_laser.back().getX() + 1;
-            int yl = d_laser.back().getY() - 1;
-
-            d_laser.push_back({xl, yl, "gauche"});
-            d_terrain.removeMirror(xl, yl);
-            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "gauche"));
+            switch(nb_direction){
+            case 1:
+                place_Laser_sl("haut", 1);
+                nb_direction = 4;
+                break;
+            case 2:
+                place_Laser_sl("bas",2);
+                nb_direction = 3;
+                break;
+            case 3:
+                place_Laser_sl("gauche",3);
+                nb_direction = 2;
+                break;
+            case 4:
+                place_Laser_sl("droite",4);
+                nb_direction=1;
+                break;
+            }
         }
 
         //mirroir \
         //correct
-        if (nextcharCase(d_laser.back()) == '\\' && d_laser.back().getDirection() == "haut")
+        //remaniement du code
+        if(nextcharCase(d_laser.back()) == '\\')
         {
-            //si direction == haut alors viens du bas
-            //envoi vers gauche
-            int xl = d_laser.back().getX() - 1;
-            int yl = d_laser.back().getY() - 1;
-
-            d_laser.push_back({xl, yl, "gauche"});
-            d_terrain.removeMirror(xl, yl);
-            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "gauche"));
-        }
-
-        //correct
-        if (nextcharCase(d_laser.back()) == '\\' && d_laser.back().getDirection() == "droite")
-        {
-            //si direction == droite  alors viens de gauche
-            //envoi vers bas
-            int xl = d_laser.back().getX() + 1;
-            int yl = d_laser.back().getY() + 1;
-
-            d_laser.push_back({xl, yl, "bas"});
-            d_terrain.removeMirror(xl, yl);
-            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "bas"));
-        }
-
-        //correct
-        if (nextcharCase(d_laser.back()) == '\\' && d_laser.back().getDirection() == "gauche")
-        {
-            //si direction == gauche il vient de droite
-            //envoi vers gauche
-            int xl = d_laser.back().getX() - 1;
-            int yl = d_laser.back().getY() - 1;
-
-            d_laser.push_back({xl, yl, "haut"});
-            d_terrain.removeMirror(xl, yl);
-            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "haut"));
-        }
-
-        //correct
-        if (nextcharCase(d_laser.back()) == '\\' && d_laser.back().getDirection() == "bas")
-        {
-            //si direction == haut viens de bas
-            //envoi vers gauche
-            int xl = d_laser.back().getX() + 1;
-            int yl = d_laser.back().getY() + 1;
-
-            d_laser.push_back({xl, yl, "droite"});
-            d_terrain.removeMirror(xl, yl);
-            d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "droite"));
+            switch(nb_direction){
+            case 1:
+                place_Laser_asl("haut", 1);
+                nb_direction = 3;
+                break;
+            case 2:
+                place_Laser_asl("bas",2);
+                nb_direction = 4;
+                break;
+            case 3:
+                place_Laser_asl("gauche",3);
+                nb_direction = 1;
+                break;
+            case 4:
+                place_Laser_asl("droite",4);
+                nb_direction = 2;
+                break;
+            }
         }
 
         if (nextcharCase(d_laser.back()) == 'X')
@@ -605,45 +625,23 @@ void joueur::shoot()
         }
 
         if (nextcharCase(d_laser.back()) == ' ')
-        {
-            if (d_laser.back().getDirection() == "haut")
-            {
-                int xl = d_laser.back().getX() - 1;
-                int yl = d_laser.back().getY();
-
-                d_laser.push_back({xl, yl, "haut"});
-                d_terrain.removeMirror(xl, yl);
-                d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "haut"));
-            }
-
-            if (d_laser.back().getDirection() == "bas")
-            {
-                int xl = d_laser.back().getX() + 1;
-                int yl = d_laser.back().getY();
-
-                d_laser.push_back({xl, yl, "bas"});
-                d_terrain.removeMirror(xl, yl);
-                d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "bas"));
-            }
-
-            if (d_laser.back().getDirection() == "droite")
-            {
-                int xl = d_laser.back().getX();
-                int yl = d_laser.back().getY() + 1;
-
-                d_laser.push_back({xl, yl, "droite"});
-                d_terrain.removeMirror(xl, yl);
-                d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "droite"));
-            }
-
-            if (d_laser.back().getDirection() == "gauche")
-            {
-                int xl = d_laser.back().getX();
-                int yl = d_laser.back().getY() - 1;
-
-                d_laser.push_back({xl, yl, "gauche"});
-                d_terrain.removeMirror(xl, yl);
-                d_terrain.setCase(xl, yl, make_unique<Laser>(xl, yl, "gauche"));
+        {   switch(nb_direction){
+            case 1:
+                place_Laser_vide("haut", 1);
+                nb_direction = 1;
+                break;
+            case 2:
+                place_Laser_vide("bas",2);
+                nb_direction = 2;
+                break;
+            case 3:
+                place_Laser_vide("gauche",3);
+                nb_direction = 3;
+                break;
+            case 4:
+                place_Laser_vide("droite",4);
+                nb_direction = 4;
+                break;
             }
         }
     }

@@ -120,7 +120,7 @@ void Terrain::affichageTexte() const
  * @param x
  * @param y
  */
-void Terrain::removeMirror(int x, int y)
+void Terrain::removeCase(int x, int y)
 {
     tab2D[x][y] = nullptr;
 }

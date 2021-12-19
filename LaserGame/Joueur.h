@@ -26,8 +26,9 @@ public:
     void afficher() const;
     void defaite() const;
     int number_direction(string direction) const;
-    void place_Laser_sl(string direction);
-    void place_Laser_asl(string direction);
+    void place_Laser_sl(string direction, int nb_direction);
+    void place_Laser_asl(string direction, int nb_direction);
+    void place_Laser_vide(string direction, int nb_direction);
     void nb_line_and_column(string filename, int &nbline, int &nbcolumn);
     Terrain read();
     bool save_write();
