@@ -17,6 +17,7 @@ public:
     void menu();
     int start(); //lance partie
     void generate_terrain();
+    void terrain_aleatoire();
     void place_mirror();
     void erase_mirror();
     void reset();
@@ -30,7 +31,7 @@ public:
     void place_Laser_asl(string direction, int nb_direction);
     void place_Laser_vide(string direction, int nb_direction);
     void nb_line_and_column(string filename, int &nbline, int &nbcolumn);
-    Terrain read();
+    Terrain read(const string& filename);
     bool save_write();
 private:
     int d_score;

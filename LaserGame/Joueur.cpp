@@ -37,24 +37,33 @@ void joueur::menu()
             generate_terrain();
             break;
         case 2:
-            shoot();
+            terrain_aleatoire();
             break;
         case 3:
-            afficher();
+            shoot();
             break;
         case 4:
-            place_mirror();
+            afficher();
             break;
         case 5:
-            erase_mirror();
+            place_mirror();
             break;
         case 6:
-            reset();
+            erase_mirror();
             break;
         case 7:
-            read();
+            reset();
             break;
         case 8:
+            {
+                cout<<"donner le nom du fichier avec extension :  ";
+                string filename ="";
+                cin>>filename;
+                read(filename);
+                break;
+            }
+
+        case 9:
             save_write();
             break;
         default:
@@ -77,18 +86,19 @@ int joueur::start() //lance partie
         cout << "LASER GAME" << '\n'
              << '\n';
         cout << "(1) Generer un terrain" << '\n';
-        cout << "(2) Lancer une partie" << '\n';
-        cout << "(3) Afficher une partie" << '\n';
-        cout << "(4) Placer mirroir" << '\n';
-        cout << "(5) Effacer mirroir (dernier mirroir)" << '\n';
-        cout << "(6) Reset" << endl;
-        cout << "(7) Charger un Terrain a partir d un fichier" << endl;
-        cout << "(8) Sauvegarder un terrain" << endl;
-        cout << "(9) Quitter la partie" << endl;
+        cout << "(2) Terrain aleatoire " << '\n';
+        cout << "(3) Lancer une partie" << '\n';
+        cout << "(4) Afficher une partie" << '\n';
+        cout << "(5) Placer mirroir" << '\n';
+        cout << "(6) Effacer mirroir (dernier mirroir)" << '\n';
+        cout << "(7) Reset" << endl;
+        cout << "(8) Charger un Terrain a partir d un fichier" << endl;
+        cout << "(9) Sauvegarder un terrain" << endl;
+        cout << "(10) Quitter la partie" << endl;
         cout << endl
              << "votre choix : ";
         cin >> choice;
-    } while (choice < 1 || choice > 9);
+    } while (choice < 1 || choice > 10);
     return choice;
 }
 
@@ -163,6 +173,26 @@ void joueur::generate_terrain()
         }
     }
 }
+
+
+
+/**
+ * @brief  terrain aleatoire
+ *
+ */
+void joueur::terrain_aleatoire()
+{
+    d_laser.clear();
+    d_mirroir.clear();
+    cout<<"Terrain choisis au hasard "<<endl;
+    srand(time(nullptr));
+    int nombreDeTerrain = 5;
+    int randomTerrain = rand() % nombreDeTerrain;
+    string filename = "randomTerrain" + to_string(randomTerrain) +".txt";
+    d_terrain = read(filename);
+}
+
+
 
 /**
  * @brief place mirror
@@ -513,6 +543,15 @@ void joueur::place_Laser_vide(string direction, int nb_direction)
  */
 void joueur::shoot()
 {
+
+    //si on lance la partie sans générer un terrain choisis un terrain au hasard dans les fichiers txt
+    if(d_terrain.getRows() == 0 && d_terrain.getColumn() == 0)
+    {
+      cout<<"veuillez générer un terrain ou choisir l'option terrain aleatoire pour pouvoir jouer "<<endl;
+      start();
+    }
+
+
     //direction debut
     int xcannon = d_cannon.getX();
     int ycannon = d_cannon.getY();
@@ -690,20 +729,14 @@ void joueur::nb_line_and_column(string filename, int &nbline, int &nbcolumn)
  * @brief Lis le fichier et stock le terrain
  *
  */
-Terrain joueur::read()
+Terrain joueur::read(const string& filename)
 {
-
-    cout<<"donner le nom du fichier avec extension :";
-    string filename;
-    cin>>filename;
-
 
     //récupere la taille du terrain et creer le terrain qui est vide pour l'instant
     int nblignne = 0;
     int nb_col = 0;
     nb_line_and_column(filename, nblignne, nb_col);
     d_terrain = Terrain(nblignne, nb_col);
-
 
     ifstream fichier(filename);
     if (fichier)
