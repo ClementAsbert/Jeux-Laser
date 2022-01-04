@@ -52,9 +52,12 @@ void joueur::menu()
             erase_mirror();
             break;
         case 7:
-            reset();
+            reset_mirror();
             break;
-        case 8:
+        case 8 :
+            reset_terrain();
+            break;
+        case 9:
             {
                 cout<<"donner le nom du fichier avec extension :  ";
                 string filename ="";
@@ -63,7 +66,7 @@ void joueur::menu()
                 break;
             }
 
-        case 9:
+        case 10:
             save_write();
             break;
         default:
@@ -91,14 +94,15 @@ int joueur::start() //lance partie
         cout << "(4) Afficher une partie" << '\n';
         cout << "(5) Placer mirroir" << '\n';
         cout << "(6) Effacer mirroir (dernier mirroir)" << '\n';
-        cout << "(7) Reset" << endl;
-        cout << "(8) Charger un Terrain a partir d un fichier" << endl;
-        cout << "(9) Sauvegarder un terrain" << endl;
-        cout << "(10) Quitter la partie" << endl;
+        cout << "(7) Reset tous les mirroirs" << endl;
+        cout << "(8) Reset tout le terrain" << endl;
+        cout << "(9) Charger un Terrain a partir d un fichier" << endl;
+        cout << "(10) Sauvegarder un terrain" << endl;
+        cout << "(11) Quitter la partie" << endl;
         cout << endl
              << "votre choix : ";
         cin >> choice;
-    } while (choice < 1 || choice > 10);
+    } while (choice < 1 || choice > 11);
     return choice;
 }
 
@@ -284,7 +288,7 @@ void joueur::erase_mirror()
  * @brief efface tous les mirroir
  *
  */
-void joueur::reset()
+void joueur::reset_mirror()
 {
     for (int i = 0; i < d_mirroir.size(); i++)
     {
@@ -292,6 +296,23 @@ void joueur::reset()
         int y = d_mirroir[i].getY();
         d_terrain.removeCase(x, y);
     }
+}
+
+/**
+ * @brief efface tous les mirroirs et les lasers
+ *
+ */
+void joueur::reset_terrain()
+{
+    reset_mirror();
+    for (int i = 0; i < d_laser.size(); i++)
+    {
+        int x = d_laser[i].getX();
+        int y = d_laser[i].getY();
+        d_terrain.removeCase(x, y);
+    }
+    cout << endl;
+    cout << "Votre terrain a bien etait reinitialise." << endl;
 }
 
 /**
@@ -543,11 +564,17 @@ void joueur::place_Laser_vide(string direction, int nb_direction)
  */
 void joueur::shoot()
 {
-
-    //si on lance la partie sans générer un terrain choisis un terrain au hasard dans les fichiers txt
+    //Si deja laser dedans cout << veuillez generer un nouveau terrain if d_laser.size() != 0 return
+    if (d_laser.size() != 0)
+    {
+        cout << endl;
+        cout << "Veuillez generer un nouveau terrain ou reset le terrain avec le bouton numero (8)." << endl;
+        return;
+    }
+    //si on lance la partie sans gï¿½nï¿½rer un terrain choisis un terrain au hasard dans les fichiers txt
     if(d_terrain.getRows() == 0 && d_terrain.getColumn() == 0)
     {
-      cout<<"veuillez générer un terrain ou choisir l'option terrain aleatoire pour pouvoir jouer "<<endl;
+      cout<<"veuillez gï¿½nï¿½rer un terrain ou choisir l'option terrain aleatoire pour pouvoir jouer "<<endl;
       start();
     }
 
@@ -593,7 +620,7 @@ void joueur::shoot()
     bool verif = true;
     while (verif)
     {
-        //je recupere le numero de la direction pour pouvoir effectuer un switch sur le numéro après
+        //je recupere le numero de la direction pour pouvoir effectuer un switch sur le numï¿½ro aprï¿½s
         int nb_direction = number_direction(d_laser.back().getDirection());
 
         //correct
@@ -732,7 +759,7 @@ void joueur::nb_line_and_column(string filename, int &nbline, int &nbcolumn)
 Terrain joueur::read(const string& filename)
 {
 
-    //récupere la taille du terrain et creer le terrain qui est vide pour l'instant
+    //rï¿½cupere la taille du terrain et creer le terrain qui est vide pour l'instant
     int nblignne = 0;
     int nb_col = 0;
     nb_line_and_column(filename, nblignne, nb_col);
@@ -741,11 +768,11 @@ Terrain joueur::read(const string& filename)
     ifstream fichier(filename);
     if (fichier)
     {
-        //L'ouverture s'est bien passée, on peut donc lire
+        //L'ouverture s'est bien passï¿½e, on peut donc lire
 
         string ligne; //Une variable pour stocker les lignes lues
         int j = 0;
-        while (getline(fichier, ligne)) //Tant qu'on n'est pas à la fin, on lit
+        while (getline(fichier, ligne)) //Tant qu'on n'est pas ï¿½ la fin, on lit
         {
             for (int i = 0; i < ligne.size(); i++)
             {

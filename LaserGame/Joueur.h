@@ -20,7 +20,8 @@ public:
     void terrain_aleatoire();
     void place_mirror();
     void erase_mirror();
-    void reset();
+    void reset_mirror();
+    void reset_terrain();
     void shoot();
     char nextcharCase(Laser l) ;
     void score() const;
