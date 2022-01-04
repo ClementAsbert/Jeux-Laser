@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "graphics.h"
 /*
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
@@ -34,9 +35,16 @@ void ascii()
 
 int main()
 {
-    ascii();
-    joueur j{};
-    j.menu();
+    //ascii();
+    //joueur j{};
+    //j.menu();
+   int gd = DETECT, gm, x, y, color, angle = 0;
+   struct arccoordstype a, b;
+   initgraph(&gd, &gm, "C:\\TC\\BGI");
+   getch();
+   closegraph();
+
+
 }
 
 
