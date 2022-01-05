@@ -7,7 +7,6 @@
 */
 #include "Joueur.h"
 
-
 using namespace std;
 
 void ascii()
@@ -36,12 +35,6 @@ void ascii()
 
 int main()
 {
-<<<<<<< HEAD
-    ascii();
-    joueur j{};
-    j.menu();
-
-=======
     //ascii();
     //joueur j{};
     //j.menu();
@@ -50,7 +43,6 @@ int main()
    initgraph(&gd, &gm, "C:\\TC\\BGI");
    getch();
    closegraph();
->>>>>>> 54825ac1da979ea29695b37046bcf9e82d5fa224
 
 
 }
