@@ -10,6 +10,7 @@
 #include <ctime>
 #include <vector>
 #include <fstream>
+#include <ctype.h>
 
 using namespace std;
 
@@ -46,18 +47,21 @@ void joueur::menu()
             afficher();
             break;
         case 5:
-            place_mirror();
+            openOrCloseGraphique();
             break;
         case 6:
-            erase_mirror();
+            place_mirror();
             break;
         case 7:
+            erase_mirror();
+            break;
+        case 8:
             reset_mirror();
             break;
-        case 8 :
+        case 9 :
             reset_terrain();
             break;
-        case 9:
+        case 10:
             {
                 cout<<"donner le nom du fichier avec extension :  ";
                 string filename ="";
@@ -66,7 +70,7 @@ void joueur::menu()
                 break;
             }
 
-        case 10:
+        case 11:
             save_write();
             break;
         default:
@@ -91,18 +95,19 @@ int joueur::start() //lance partie
         cout << "(1) Generer un terrain" << '\n';
         cout << "(2) Terrain aleatoire " << '\n';
         cout << "(3) Lancer une partie" << '\n';
-        cout << "(4) Afficher une partie" << '\n';
-        cout << "(5) Placer mirroir" << '\n';
-        cout << "(6) Effacer mirroir (dernier mirroir)" << '\n';
-        cout << "(7) Reset tous les mirroirs" << endl;
-        cout << "(8) Reset tout le terrain" << endl;
-        cout << "(9) Charger un Terrain a partir d un fichier" << endl;
-        cout << "(10) Sauvegarder un terrain" << endl;
-        cout << "(11) Quitter la partie" << endl;
+        cout << "(4) Affiche la partie textuelle" << '\n';
+        cout << "(5) Ouvre/Ferme fenetre graphique" << '\n';
+        cout << "(6) Placer mirroir" << '\n';
+        cout << "(7) Effacer mirroir (dernier mirroir)" << '\n';
+        cout << "(8) Reset tous les mirroirs" << endl;
+        cout << "(9) Reset tout le terrain" << endl;
+        cout << "(10) Charger un Terrain a partir d un fichier" << endl;
+        cout << "(11) Sauvegarder un terrain" << endl;
+        cout << "(12) Quitter la partie" << endl;
         cout << endl
              << "votre choix : ";
         cin >> choice;
-    } while (choice < 1 || choice > 11);
+    } while (choice < 1 || choice > 12);
     return choice;
 }
 
@@ -115,8 +120,12 @@ void joueur::generate_terrain()
     int x, y;
     d_laser.clear();
     d_mirroir.clear();
-    cout << "donner la taille du terrain en premier x et y : " << endl;
-    cin >> x >> y;
+
+    do
+    {
+        cout << "donner la taille du terrain en premier x et y : " << endl;
+        cin >> x >> y;
+    } while (x < 3 || y < 3);
 
     d_terrain = Terrain(x, y);
 
@@ -249,6 +258,7 @@ void joueur::place_mirror()
             d_mirroir.push_back(m);
         }
     }
+    d_fenetre.affichage(d_terrain);
 }
 
 /**
@@ -572,7 +582,7 @@ void joueur::shoot()
     //si on lance la partie sans g�n�rer un terrain choisis un terrain au hasard dans les fichiers txt
     if(d_terrain.getRows() == 0 && d_terrain.getColumn() == 0)
     {
-      cout<<"veuillez g�n�rer un terrain ou choisir l'option terrain aleatoire pour pouvoir jouer "<<endl;
+      cout<<"veuillez generer un terrain ou choisir l'option terrain aleatoire pour pouvoir jouer "<<endl;
       start();
     }
 
@@ -701,6 +711,7 @@ void joueur::shoot()
             }
         }
     }
+    d_fenetre.affichage(d_terrain);
 }
 /**
  * @brief stocke le score de l'utilisateur et l'affiche
@@ -721,6 +732,21 @@ void joueur::afficher() const
     d_terrain.affichageTexte();
 }
 
+/**
+ * @brief affiche le terrain
+ *
+ */
+void joueur::openOrCloseGraphique()
+{
+    //si on lance la partie sans g�n�rer un terrain choisis un terrain au hasard dans les fichiers txt
+    if(d_terrain.getRows() == 0 && d_terrain.getColumn() == 0)
+    {
+      cout<<"Veuillez generer un terrain ou choisir l'option terrain aleatoire pour pouvoir jouer "<<endl;
+      start();
+    }
+    else
+        d_fenetre.openOrClose(d_terrain);
+}
 
 /**
  * @brief return with argument count of line and column in file filename

@@ -6,14 +6,14 @@
 vue::vue():d_fenetreOuvert{false},d_tailleX{80},d_tailleY{80}
 {}
 
-void vue::affichage(Terrain terrain){
+void vue::affichage(Terrain &terrain){
     if(d_fenetreOuvert){
         cleardevice();
         for (int i = 0; i < terrain.getRows(); i++)
         {
             for (int a = 0; a < terrain.getColumn(); a++)
             {
-                switch(terrain.getCharCase(a,i)){
+                switch(terrain.getCharCase(a,i)){//bug: demander au prof
                     case 'X':mur(i,a);break;
                     case '#':depart(i,a);break;
                     case '@':arrive(i,a);break;
@@ -27,14 +27,15 @@ void vue::affichage(Terrain terrain){
     }
 }
 
-void vue::openOrClose(Terrain terrain)
+void vue::openOrClose(Terrain &terrain)
 {
     if(d_fenetreOuvert){
+        cleardevice();
         ::closegraph();
         d_fenetreOuvert=false;
     }
     else{
-        ::opengraphsize(d_tailleX*terrain.getColumn(),d_tailleY*terrain.getRows());
+        ::opengraphsize(d_tailleX*terrain.getColumn()+10,d_tailleY*terrain.getRows()+20);
         d_fenetreOuvert=true;
         affichage(terrain);
     }
@@ -52,7 +53,7 @@ void vue::depart(int x,int y){
 }
 
 void vue::arrive(int x,int y){
-    setcolor(6);
+    setcolor(11);
     circle(x*d_tailleX+d_tailleX/2, y*d_tailleY+d_tailleY/2, d_tailleY/2);
 }
 
