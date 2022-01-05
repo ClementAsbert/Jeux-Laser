@@ -270,3 +270,150 @@
 	<sys/time.h>
 	<unistd.h>
 
+1641411816 source:c:\users\clément\desktop\jeux-laser\lasergame\canon.cpp
+	"Canon.h"
+
+1641411816 c:\users\clément\desktop\jeux-laser\lasergame\canon.h
+	"Case.h"
+
+1641411816 c:\users\clément\desktop\jeux-laser\lasergame\case.h
+
+1641411816 source:c:\users\clément\desktop\jeux-laser\lasergame\case.cpp
+	"Case.h"
+
+1641411816 source:c:\users\clément\desktop\jeux-laser\lasergame\cible.cpp
+	"Cible.h"
+
+1641411816 c:\users\clément\desktop\jeux-laser\lasergame\cible.h
+	"Case.h"
+
+1641411816 source:c:\users\clément\desktop\jeux-laser\lasergame\laser.cpp
+	"Laser.h"
+	<string>
+
+1641411816 c:\users\clément\desktop\jeux-laser\lasergame\laser.h
+	"Case.h"
+	<string>
+
+1641411816 source:c:\users\clément\desktop\jeux-laser\lasergame\mirroir.cpp
+	"Mirroir.h"
+
+1641411816 c:\users\clément\desktop\jeux-laser\lasergame\mirroir.h
+	"Case.h"
+
+1641411816 source:c:\users\clément\desktop\jeux-laser\lasergame\mur.cpp
+	"Mur.h"
+
+1641411816 c:\users\clément\desktop\jeux-laser\lasergame\mur.h
+	"Case.h"
+
+1641411816 source:c:\users\clément\desktop\jeux-laser\lasergame\sol.cpp
+	"sol.h"
+
+1641411816 c:\users\clément\desktop\jeux-laser\lasergame\sol.h
+	"Case.h"
+
+1641411816 source:c:\users\clément\desktop\jeux-laser\lasergame\terrain.cpp
+	"Terrain.h"
+	"Case.h"
+	<iostream>
+
+1641411816 c:\users\clément\desktop\jeux-laser\lasergame\terrain.h
+	"Case.h"
+	<memory>
+	<vector>
+
+1641411816 source:c:\users\clément\desktop\jeux-laser\lasergame\testunit.cpp
+	"doctest.h"
+	"Canon.h"
+	"Cible.h"
+	"Laser.h"
+	"Mirroir.h"
+	"sol.h"
+	"Terrain.h"
+	"Joueur.h"
+
+1641411816 c:\users\clément\desktop\jeux-laser\lasergame\doctest.h
+	<signal.h>
+	<iosfwd>
+	<cstddef>
+	<ostream>
+	<ciso646>
+	<type_traits>
+	"doctest_fwd.h"
+	<ctime>
+	<cmath>
+	<climits>
+	<math.h>
+	<new>
+	<cstdio>
+	<cstdlib>
+	<cstring>
+	<limits>
+	<utility>
+	<fstream>
+	<sstream>
+	<iostream>
+	<algorithm>
+	<iomanip>
+	<vector>
+	<atomic>
+	<mutex>
+	<set>
+	<map>
+	<exception>
+	<stdexcept>
+	<csignal>
+	<cfloat>
+	<cctype>
+	<cstdint>
+	<sys/types.h>
+	<unistd.h>
+	<sys/sysctl.h>
+	<AfxWin.h>
+	<windows.h>
+	<io.h>
+	<sys/time.h>
+	<unistd.h>
+
+1641412764 c:\users\clément\desktop\jeux-laser\lasergame\joueur.h
+	"Terrain.h"
+	<vector>
+	"Mirroir.h"
+	<memory>
+	"Laser.h"
+	"Canon.h"
+	"Mur.h"
+	<vector>
+	<string>
+
+1641411816 source:c:\users\clément\desktop\jeux-laser\lasergame\winbgi.cpp
+	<windows.h>
+	<stddef.h>
+	<stdio.h>
+	<math.h>
+	"graphics.h"
+
+1641411816 c:\users\clément\desktop\jeux-laser\lasergame\graphics.h
+
+1641412784 source:c:\users\clément\desktop\jeux-laser\lasergame\main.cpp
+	<iostream>
+	<string>
+	"graphics.h"
+	"doctest.h"
+	"Joueur.h"
+
+1641412771 source:c:\users\clément\desktop\jeux-laser\lasergame\joueur.cpp
+	"joueur.h"
+	"Terrain.h"
+	"Mirroir.h"
+	"Canon.h"
+	"Cible.h"
+	"sol.h"
+	<string>
+	<iostream>
+	<stdlib.h>
+	<ctime>
+	<vector>
+	<fstream>
+

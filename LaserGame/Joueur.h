@@ -28,6 +28,8 @@ public:
     void afficher() const;
     void defaite() const;
     int number_direction(string direction) const;
+    void AppliqueLaser(int x, int y, string position);
+    void placeCanon(int x, int y, string position);
     void place_Laser_sl(string direction, int nb_direction);
     void place_Laser_asl(string direction, int nb_direction);
     void place_Laser_vide(string direction, int nb_direction);

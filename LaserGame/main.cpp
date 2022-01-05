@@ -35,16 +35,9 @@ void ascii()
 
 int main()
 {
-    //ascii();
-    //joueur j{};
-    //j.menu();
-   int gd = DETECT, gm, x, y, color, angle = 0;
-   struct arccoordstype a, b;
-   initgraph(&gd, &gm, "C:\\TC\\BGI");
-   getch();
-   closegraph();
-
-
+    ascii();
+    joueur j{};
+    j.menu();
 }
 
 
