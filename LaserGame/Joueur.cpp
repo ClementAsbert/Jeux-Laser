@@ -10,6 +10,7 @@
 #include <ctime>
 #include <vector>
 #include <fstream>
+#include "vue.h"
 
 using namespace std;
 
@@ -17,8 +18,9 @@ using namespace std;
  * @brief Construct a new joueur::joueur object
  *
  */
-joueur::joueur() : d_score{0}, d_terrain{}, d_cannon{}, d_mirroir{}, d_laser{}
+joueur::joueur() : d_score{0}, d_terrain{}, d_cannon{}, d_mirroir{}, d_laser{},d_fenetre{}
 {
+
 }
 
 /**
@@ -46,18 +48,30 @@ void joueur::menu()
             afficher();
             break;
         case 5:
-            place_mirror();
+            openOrCloseGraphique();
             break;
         case 6:
-            erase_mirror();
+            place_mirror();
             break;
         case 7:
+<<<<<<< HEAD
+            erase_mirror();
+            break;
+        case 8:
+            reset_mirror();
+            break;
+        case 9 :
+            reset_terrain();
+            break;
+        case 10:
+=======
             reset_mirror();
             break;
         case 8 :
             reset_terrain();
             break;
         case 9:
+>>>>>>> 54825ac1da979ea29695b37046bcf9e82d5fa224
             {
                 cout<<"donner le nom du fichier avec extension :  ";
                 string filename ="";
@@ -66,7 +80,11 @@ void joueur::menu()
                 break;
             }
 
+<<<<<<< HEAD
+        case 11:
+=======
         case 10:
+>>>>>>> 54825ac1da979ea29695b37046bcf9e82d5fa224
             save_write();
             break;
         default:
@@ -91,6 +109,21 @@ int joueur::start() //lance partie
         cout << "(1) Generer un terrain" << '\n';
         cout << "(2) Terrain aleatoire " << '\n';
         cout << "(3) Lancer une partie" << '\n';
+<<<<<<< HEAD
+        cout << "(4) Afficher une partie textuelle" << '\n';
+        cout << "(5) Ouvre/Ferme fenetre graphique" << '\n';
+        cout << "(6) Placer mirroir" << '\n';
+        cout << "(7) Effacer mirroir (dernier mirroir)" << '\n';
+        cout << "(8) Reset tous les mirroirs" << endl;
+        cout << "(9) Reset tout le terrain" << endl;
+        cout << "(10) Charger un Terrain a partir d un fichier" << endl;
+        cout << "(11) Sauvegarder un terrain" << endl;
+        cout << "(12) Quitter la partie" << endl;
+        cout << endl
+             << "votre choix : ";
+        cin >> choice;
+    } while (choice < 1 || choice > 12);
+=======
         cout << "(4) Afficher une partie" << '\n';
         cout << "(5) Placer mirroir" << '\n';
         cout << "(6) Effacer mirroir (dernier mirroir)" << '\n';
@@ -103,6 +136,7 @@ int joueur::start() //lance partie
              << "votre choix : ";
         cin >> choice;
     } while (choice < 1 || choice > 11);
+>>>>>>> 54825ac1da979ea29695b37046bcf9e82d5fa224
     return choice;
 }
 
@@ -194,6 +228,7 @@ void joueur::terrain_aleatoire()
     int randomTerrain = rand() % nombreDeTerrain;
     string filename = "randomTerrain" + to_string(randomTerrain) +".txt";
     d_terrain = read(filename);
+
 }
 
 
@@ -247,6 +282,7 @@ void joueur::place_mirror()
             Mirroir m{x, y, c};
             d_mirroir.push_back(m);
         }
+
     }
 }
 
@@ -282,6 +318,7 @@ void joueur::erase_mirror()
     int y = d_mirroir.back().getY();
     d_terrain.removeCase(x, y);
     d_mirroir.pop_back();
+
 }
 
 /**
@@ -296,6 +333,24 @@ void joueur::reset_mirror()
         int y = d_mirroir[i].getY();
         d_terrain.removeCase(x, y);
     }
+
+}
+
+/**
+ * @brief efface tous les mirroirs et les lasers
+ *
+ */
+void joueur::reset_terrain()
+{
+    reset_mirror();
+    for (int i = 0; i < d_laser.size(); i++)
+    {
+        int x = d_laser[i].getX();
+        int y = d_laser[i].getY();
+        d_terrain.removeCase(x, y);
+    }
+    cout << endl;
+    cout << "Votre terrain a bien etait reinitialise." << endl;
 }
 
 /**
@@ -731,6 +786,14 @@ void joueur::afficher() const
     d_terrain.affichageTexte();
 }
 
+/**
+ * @brief affiche le terrain
+ *
+ */
+void joueur::openOrCloseGraphique()
+{
+    d_fenetre.openOrClose(d_terrain);
+}
 
 /**
  * @brief return with argument count of line and column in file filename
@@ -759,7 +822,11 @@ void joueur::nb_line_and_column(string filename, int &nbline, int &nbcolumn)
 Terrain joueur::read(const string& filename)
 {
 
+<<<<<<< HEAD
+    //recupere la taille du terrain et creer le terrain qui est vide pour l'instant
+=======
     //r�cupere la taille du terrain et creer le terrain qui est vide pour l'instant
+>>>>>>> 54825ac1da979ea29695b37046bcf9e82d5fa224
     int nblignne = 0;
     int nb_col = 0;
     nb_line_and_column(filename, nblignne, nb_col);

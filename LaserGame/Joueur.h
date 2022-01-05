@@ -9,6 +9,7 @@
 #include "Mur.h"
 #include <vector>
 #include <string>
+#include "vue.h"
 using namespace std;
 
 class joueur{
@@ -26,6 +27,7 @@ public:
     char nextcharCase(Laser l) ;
     void score() const;
     void afficher() const;
+    void openOrCloseGraphique();
     void defaite() const;
     int number_direction(string direction) const;
     void place_Laser_sl(string direction, int nb_direction);
@@ -40,7 +42,7 @@ private:
     Canon d_cannon;
     vector<Mirroir> d_mirroir;
     vector<Laser> d_laser;
-
+    vue d_fenetre;
 };
 
 #endif // JOUEUR_H_INCLUDED
