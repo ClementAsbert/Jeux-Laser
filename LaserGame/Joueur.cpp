@@ -121,8 +121,9 @@ void joueur::generate_terrain()
     d_terrain = Terrain(x, y);
 
     //placement aleatoire de cible et cannon
-    srand(time(0));
+    srand(time(NULL));
     int rx = rand() % x;
+    srand(time(NULL));
     int ry;
     if (rx != 0 && rx != x - 1)
         ry = rand() % 2 * (y - 1);
@@ -269,6 +270,20 @@ void joueur::defaite() const
 
 
 )" << endl;
+}
+
+void joueur::victoire() const
+{
+    cout << R"(
+____    ____  __    ______ .___________.  ______    __  .______       _______
+\   \  /   / |  |  /      ||           | /  __  \  |  | |   _  \     |   ____|
+ \   \/   /  |  | |  ,----'`---|  |----`|  |  |  | |  | |  |_)  |    |  |__
+  \      /   |  | |  |         |  |     |  |  |  | |  | |      /     |   __|
+   \    /    |  | |  `----.    |  |     |  `--'  | |  | |  |\  \----.|  |____
+    \__/     |__|  \______|    |__|      \______/  |__| | _| `._____||_______|
+
+)"<<endl;
+
 }
 
 /**
@@ -659,7 +674,7 @@ void joueur::shoot()
         {
             //faire fonctione victoire
             //cout<<"test1"<<endl;
-            cout << "victoire" << endl;
+            victoire();
             d_score += 10;
             score();
             verif = false;

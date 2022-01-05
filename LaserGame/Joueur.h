@@ -27,6 +27,7 @@ public:
     void score() const;
     void afficher() const;
     void defaite() const;
+    void victoire() const;
     int number_direction(string direction) const;
     void AppliqueLaser(int x, int y, string position);
     void placeCanon(int x, int y, string position);
