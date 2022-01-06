@@ -4,15 +4,20 @@
 
 1641402836 c:\users\lucbu\documents\c++\jeux-laser\lasergame\case.h
 
-1638449021 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\joueur.cpp
+1641448856 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\joueur.cpp
 	"joueur.h"
 	"Terrain.h"
 	"Mirroir.h"
 	"Canon.h"
+	"Cible.h"
+	"sol.h"
 	<string>
 	<iostream>
 	<stdlib.h>
 	<ctime>
+	<vector>
+	<fstream>
+	<ctype.h>
 
 1641402836 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\mur.cpp
 	"Mur.h"
@@ -37,9 +42,11 @@
 1641402836 c:\users\lucbu\documents\c++\jeux-laser\lasergame\canon.h
 	"Case.h"
 
-1638448829 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\main.cpp
+1641408345 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\main.cpp
 	<iostream>
 	<string>
+	"graphics.h"
+	"doctest.h"
 	"Joueur.h"
 
 1641402836 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\mirroir.cpp
@@ -51,9 +58,10 @@
 1641402836 c:\users\lucbu\documents\c++\jeux-laser\lasergame\mur.h
 	"Case.h"
 
-1641402836 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\terrain.cpp
+1641447921 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\terrain.cpp
 	"Terrain.h"
 	"Case.h"
+	"sol.h"
 	<iostream>
 
 1641402836 c:\users\lucbu\documents\c++\jeux-laser\lasergame\terrain.h
@@ -61,7 +69,7 @@
 	<memory>
 	<vector>
 
-1641404310 c:\users\lucbu\documents\c++\jeux-laser\lasergame\joueur.h
+1641408087 c:\users\lucbu\documents\c++\jeux-laser\lasergame\joueur.h
 	"Terrain.h"
 	<vector>
 	"Mirroir.h"
@@ -69,6 +77,7 @@
 	"Laser.h"
 	"Canon.h"
 	"Mur.h"
+	"vue.h"
 	<vector>
 	<string>
 
@@ -416,4 +425,22 @@
 	<ctime>
 	<vector>
 	<fstream>
+
+1641404310 c:\users\lucbu\documents\c++\jeux-laser\lasergame\graphics.h
+
+1641446344 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\vue.cpp
+	"vue.h"
+	"Terrain.h"
+	"graphics.h"
+	<iostream>
+
+1641445728 c:\users\lucbu\documents\c++\jeux-laser\lasergame\vue.h
+	"Terrain.h"
+
+1641404305 source:c:\users\lucbu\documents\c++\jeux-laser\lasergame\winbgi.cpp
+	<windows.h>
+	<stddef.h>
+	<stdio.h>
+	<math.h>
+	"graphics.h"
 

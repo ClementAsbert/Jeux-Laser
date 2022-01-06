@@ -13,14 +13,14 @@ void vue::affichage(Terrain &terrain){
         {
             for (int a = 0; a < terrain.getColumn(); a++)
             {
-                switch(terrain.getCharCase(a,i)){//bug: demander au prof
-                    case 'X':mur(i,a);break;
-                    case '#':depart(i,a);break;
-                    case '@':arrive(i,a);break;
-                    case '|':laserVertical(i,a);break;
-                    case '-':laserHorizontal(i,a);break;
-                    case '/':mirroirSlash(i,a);break;
-                    case '\\':mirroirAntiSlash(i,a);break;
+                switch(terrain.getCharCase(i,a)){//bug: demander au prof
+                    case 'X':mur(a,i);break;
+                    case '#':depart(a,i);break;
+                    case '@':arrive(a,i);break;
+                    case '|':laserVertical(a,i);break;
+                    case '-':laserHorizontal(a,i);break;
+                    case '/':mirroirSlash(a,i);break;
+                    case '\\':mirroirAntiSlash(a,i);break;
                 }
             }
         }
@@ -38,6 +38,14 @@ void vue::openOrClose(Terrain &terrain)
         ::opengraphsize(d_tailleX*terrain.getColumn()+10,d_tailleY*terrain.getRows()+20);
         d_fenetreOuvert=true;
         affichage(terrain);
+    }
+}
+
+void vue::close(){
+    if(d_fenetreOuvert){
+        cleardevice();
+        ::closegraph();
+        d_fenetreOuvert=false;
     }
 }
 

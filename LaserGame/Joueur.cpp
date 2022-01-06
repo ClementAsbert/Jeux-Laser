@@ -35,9 +35,11 @@ void joueur::menu()
         switch (choice)
         {
         case 1:
+            d_fenetre.close();
             generate_terrain();
             break;
         case 2:
+            d_fenetre.close();
             terrain_aleatoire();
             break;
         case 3:
@@ -66,16 +68,18 @@ void joueur::menu()
                 cout<<"donner le nom du fichier avec extension :  ";
                 string filename ="";
                 cin>>filename;
-                read(filename);
+                read("terrain_read/"+filename);
                 break;
             }
 
         case 11:
+            d_fenetre.close();
             save_write();
             break;
         default:
             goOn = false;
         }
+        d_fenetre.affichage(d_terrain);
     }
 }
 
@@ -90,8 +94,7 @@ int joueur::start() //lance partie
     int choice;
     do
     {
-        cout << "LASER GAME" << '\n'
-             << '\n';
+        cout << '\n'<< '\n';
         cout << "(1) Generer un terrain" << '\n';
         cout << "(2) Terrain aleatoire " << '\n';
         cout << "(3) Lancer une partie" << '\n';
@@ -202,7 +205,7 @@ void joueur::terrain_aleatoire()
     srand(time(nullptr));
     int nombreDeTerrain = 5;
     int randomTerrain = rand() % nombreDeTerrain;
-    string filename = "randomTerrain" + to_string(randomTerrain) +".txt";
+    string filename = "terrain_alea/randomTerrain" + to_string(randomTerrain) +".txt";
     d_terrain = read(filename);
 }
 
@@ -258,7 +261,7 @@ void joueur::place_mirror()
             d_mirroir.push_back(m);
         }
     }
-    d_fenetre.affichage(d_terrain);
+
 }
 
 /**
@@ -576,7 +579,7 @@ void joueur::shoot()
     if (d_laser.size() != 0)
     {
         cout << endl;
-        cout << "Veuillez generer un nouveau terrain ou reset le terrain avec le bouton numero (8)." << endl;
+        cout << "Veuillez generer un nouveau terrain ou reset le terrain avec le bouton numero (9)." << endl;
         return;
     }
     //si on lance la partie sans g�n�rer un terrain choisis un terrain au hasard dans les fichiers txt
@@ -711,7 +714,6 @@ void joueur::shoot()
             }
         }
     }
-    d_fenetre.affichage(d_terrain);
 }
 /**
  * @brief stocke le score de l'utilisateur et l'affiche
@@ -831,8 +833,9 @@ bool joueur::save_write()
     cout<<"donner le nom du fichier avec extension :";
     string filename;
     cin>>filename;
-    string const nomFichier(filename);
-    ofstream File(nomFichier.c_str());
+    string pathFilename = "terrain_save/"+filename;
+    string const nomFichier(pathFilename);
+    ofstream File(pathFilename.c_str());
 
     if (File)
     {

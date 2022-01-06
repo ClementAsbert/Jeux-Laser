@@ -1,5 +1,6 @@
 #include "Terrain.h"
 #include "Case.h"
+#include "sol.h"
 #include <iostream>
 /**
  * @brief Construct a new Terrain:: Terrain object
@@ -122,7 +123,7 @@ void Terrain::affichageTexte() const
  */
 void Terrain::removeCase(int x, int y)
 {
-    tab2D[x][y] = nullptr;
+    setCase(x, y, std::make_unique<sol>(x, y));
 }
 
 
